@@ -1,6 +1,8 @@
 import unittest
 import sys
-from ...indian_stock_markets.nse import FutStk
+sys.path.append(".")
+
+from indian_stock_markets.nse import BhavCopy
 
 class TestFutStk(unittest.TestCase):
     def test_open(self):
