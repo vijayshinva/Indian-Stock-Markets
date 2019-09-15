@@ -1,7 +1,7 @@
 language: python
 python:
   - 3.6
-before_install: cd indian-stock-markets
+before_install: cd indian_stock_markets
 install: pip install -r requirements.txt
 script: 
   - python3 -m unittest discover

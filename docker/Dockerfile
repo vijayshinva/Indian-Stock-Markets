@@ -1,8 +1,8 @@
 FROM python:3
 
-COPY indian-stock-markets/requirements.txt ./
+COPY indian_stock_markets/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY indian-stock-markets/ .
+COPY indian_stock_markets/ .
 
 CMD [ "python"]

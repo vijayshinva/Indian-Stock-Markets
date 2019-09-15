@@ -1,0 +1,1 @@
+name="indian_stock_markets"

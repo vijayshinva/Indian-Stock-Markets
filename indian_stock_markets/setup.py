@@ -3,7 +3,7 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setuptools.setup(name="indian-stock-markets",
+setuptools.setup(name="indian_stock_markets",
     version="0.0.1",
     author="Vijayshinva B Karnure",
     author_email="vijayshinva@outlook.com",

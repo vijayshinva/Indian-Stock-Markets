@@ -4,7 +4,7 @@ import traceback
 import pandas as pd
 from pandas.tseries.offsets import BDay
 from datetime import date
-from indian-stock-markets.nse import BhavCopy
+from indian_stock_markets.nse import BhavCopy
 
 class Nse(object):
     def __init__(self, *args, **kwargs):
