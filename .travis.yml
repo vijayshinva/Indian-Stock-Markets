@@ -8,5 +8,5 @@ script:
   - python3 setup.py sdist bdist_wheel
 deploy:
   provider: pypi
-  user: $pypi-user
-  password: $pypi-password
+  user: $pypi_user
+  password: $pypi_password
