@@ -3,8 +3,10 @@ python:
   - 3.6
 before_install: cd indian-stock-markets
 install: pip install -r requirements.txt
-script: python3 setup.py sdist bdist_wheel
+script: 
+  - python3 -m unittest discover
+  - python3 setup.py sdist bdist_wheel
 deploy:
   provider: pypi
-  user: pypi-user
-  password: pypi-password
+  user: $pypi-user
+  password: $pypi-password
