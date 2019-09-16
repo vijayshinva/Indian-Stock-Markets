@@ -8,19 +8,23 @@ from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
+
 class BhavCopy(object):
     """description of class"""
+
     def __init__(self, date: date):
         self.date = date
-        self._url_eq = urlparse(f'https://www.nseindia.com/content/historical/EQUITIES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/cm{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
+        self._url_eq = urlparse(
+            f'https://www.nseindia.com/content/historical/EQUITIES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/cm{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
         self._file_eq_zip = Path(self._url_eq.path[1:])
         self._file_eq = Path(self._url_eq.path[1:-4])
-        self._url_fo = urlparse(f'https://www.nseindia.com/content/historical/DERIVATIVES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/fo{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
+        self._url_fo = urlparse(
+            f'https://www.nseindia.com/content/historical/DERIVATIVES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/fo{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
         self._file_fo_zip = Path(self._url_fo.path[1:])
         self._file_fo = Path(self._url_fo.path[1:-4])
         self.market_close = False
         self._initialize()
-    
+
     def _initialize(self):
         if self.date.weekday() == 5 or self.date.weekday() == 6:
             self.market_close = True
