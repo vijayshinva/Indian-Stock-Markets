@@ -11,7 +11,7 @@ script:
   - pytest --cov=india_stock_markets
   - python3 setup.py sdist bdist_wheel
 after_success:
-  - coveralls
+  - COVERALLS_REPO_TOKEN=$coveralls_token coveralls
 deploy:
   provider: pypi
   user: $pypi_user

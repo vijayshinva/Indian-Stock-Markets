@@ -1,7 +1,7 @@
 # Indian-Stock-Markets
 ![PyPI](https://img.shields.io/pypi/v/indian-stock-markets) ![PyPI - Format](https://img.shields.io/pypi/format/indian-stock-markets) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/indian-stock-markets)
 
-[![Build Status](https://travis-ci.org/vijayshinva/Indian-Stock-Markets.svg?branch=master)](https://travis-ci.org/vijayshinva/Indian-Stock-Markets) [![CodeFactor](https://www.codefactor.io/repository/github/vijayshinva/indian-stock-markets/badge)](https://www.codefactor.io/repository/github/vijayshinva/indian-stock-markets)
+[![Build Status](https://travis-ci.org/vijayshinva/Indian-Stock-Markets.svg?branch=master)](https://travis-ci.org/vijayshinva/Indian-Stock-Markets) [![CodeFactor](https://www.codefactor.io/repository/github/vijayshinva/indian-stock-markets/badge)](https://www.codefactor.io/repository/github/vijayshinva/indian-stock-markets) [![Coverage Status](https://coveralls.io/repos/github/vijayshinva/Indian-Stock-Markets/badge.svg?branch=master)](https://coveralls.io/github/vijayshinva/Indian-Stock-Markets?branch=master)
 
 A Python package for analyzing Indian Stock Markets
 
