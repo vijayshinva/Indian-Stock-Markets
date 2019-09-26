@@ -16,12 +16,14 @@ class BhavCopy(object):
         self.date = date
         self._url_eq = urlparse(
             f'https://www.nseindia.com/content/historical/EQUITIES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/cm{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
-        self._file_eq_zip = Path(self._url_eq.path[1:])
         self._file_eq = Path(self._url_eq.path[1:-4])
         self._url_fo = urlparse(
             f'https://www.nseindia.com/content/historical/DERIVATIVES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/fo{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
         self._file_fo_zip = Path(self._url_fo.path[1:])
         self._file_fo = Path(self._url_fo.path[1:-4])
+        self._url_short_selling = urlparse(
+            f'https://www.nseindia.com/archives/equities/shortSelling/shortselling_{date.strftime("%d%m%Y")}.csv')
+        self._file_short_selling = Path(self._url_short_selling.path[1:])
         self.market_close = False
         self._initialize()
 
@@ -29,10 +31,12 @@ class BhavCopy(object):
         if self.date.weekday() == 5 or self.date.weekday() == 6:
             self.market_close = True
             return
-        self._try_download(self._url_eq, self._file_eq_zip)
-        self._try_download(self._url_fo, self._file_fo_zip)
+        self._try_download(self._url_eq)
+        self._try_download(self._url_fo)
+        self._try_download(self._url_short_selling)
 
-    def _try_download(self, url: urlparse, path: Path):
+    def _try_download(self, url: urlparse):
+        path = Path(url.path[1:])
         if not path.is_file():
             path.parent.mkdir(parents=True, exist_ok=True)
             with requests.get(url.geturl(), stream=True) as r:
@@ -40,8 +44,9 @@ class BhavCopy(object):
                     with path.open('wb') as f:
                         r.raw.decode_content = True
                         shutil.copyfileobj(r.raw, f)
-                    with zipfile.ZipFile(path, 'r') as zf:
-                        zf.extractall(path.parent)
+                    if path.suffix == '.zip':
+                        with zipfile.ZipFile(path, 'r') as zf:
+                            zf.extractall(path.parent)
                 if r.status_code == 404:
                     self.market_close = True
 
@@ -58,6 +63,14 @@ class BhavCopy(object):
             with self._file_eq.open('rt') as f:
                 csv_reader = csv.reader(f, delimiter=',')
                 self.headers_eq = next(csv_reader, None)
+                for row in csv.reader(f, delimiter=','):
+                    yield row
+
+    def read_short_selling(self):
+        if self._file_short_selling.is_file():
+            with self._file_short_selling.open('rt') as f:
+                csv_reader = csv.reader(f, delimiter=',')
+                self.headers_short_selling = next(csv_reader, None)
                 for row in csv.reader(f, delimiter=','):
                     yield row
 

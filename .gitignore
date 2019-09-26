@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# vscode
+.vscode
+
+# Indian_Stock_Markets
+/content
+/archives
+*.db

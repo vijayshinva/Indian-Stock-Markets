@@ -56,6 +56,13 @@ class Nse(object):
                         except sqlite3.IntegrityError as e:
                             cursor.execute('UPDATE OPTIDX SET OPEN=?,HIGH=?,LOW=?,CLOSE=?,SETTLE_PR=?,CONTRACTS=?,VAL_INLAKH=?,OPEN_INT=?,CHG_IN_OI=? WHERE SYMBOL=? AND EXPIRY_DT=?  AND TIMESTAMP=? AND STRIKE_PR=? AND OPTION_TYP=?', (
                                 open, high, low, close, settle_pr, contracts, val_inlakh, open_int, chg_in_oi, symbol, expiry_dt, timestamp, strike_pr, option_typ))
+                for _, security_symbol, trade_date, quantity in bhavcopy.read_short_selling():
+                    try:
+                        cursor.execute('INSERT INTO SHORTSELLING (SYMBOL,TRADE_DATE,QUANTITY) VALUES(?,?,?)', (
+                            security_symbol, trade_date, quantity))
+                    except sqlite3.IntegrityError as e:
+                        cursor.execute('UPDATE SHORTSELLING SET QUANTITY=? WHERE SYMBOL=? AND TRADE_DATE=?', (
+                            security_symbol, trade_date, quantity))
                 cursor.execute('COMMIT')
 
     def _create_tables(self):
