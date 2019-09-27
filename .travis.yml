@@ -5,6 +5,7 @@ matrix:
       env: TOXENV=py36
     - python: 3.7
       env: TOXENV=py37
+  allow_failures:
     - python: 3.7
       env: TOXENV=flake8
 before_install: cd src
@@ -18,7 +19,7 @@ script:
   - tox
   - python3 setup.py sdist bdist_wheel
 after_success:
-  - COVERALLS_REPO_TOKEN=$coveralls_token coveralls
+  - COVERALLS_REPO_TOKEN=$coveralls_token coveralls --verbose
 deploy:
   provider: pypi
   user: $pypi_user

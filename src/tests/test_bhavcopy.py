@@ -18,20 +18,19 @@ class TestBhavCopy(unittest.TestCase):
                          'https://www.nseindia.com/content/historical/DERIVATIVES/2019/SEP/fo25SEP2019bhav.csv.zip')
         self.assertEqual(self.bhavcopy._url_short_selling.geturl(),
                          'https://www.nseindia.com/archives/equities/shortSelling/shortselling_25092019.csv')
+        self.assertEqual(self.bhavcopy._url_participant_oi.geturl(),
+                         'https://www.nseindia.com/content/nsccl/fao_participant_oi_25092019.csv')
+        self.assertEqual(self.bhavcopy._url_participant_vol.geturl(),
+                         'https://www.nseindia.com/content/nsccl/fao_participant_vol_25092019.csv')
 
     def test_downloaded_files(self):
         eq_path = Path(self.bhavcopy._url_eq.path[1:])
         fo_path = Path(self.bhavcopy._url_fo.path[1:])
         short_selling_path = Path(self.bhavcopy._url_short_selling.path[1:])
+        participant_oi_path = Path(self.bhavcopy._url_participant_oi.path[1:])
+        participant_vol_path = Path(self.bhavcopy._url_participant_vol.path[1:])
         self.assertTrue(eq_path.is_file())
         self.assertTrue(fo_path.is_file())
         self.assertTrue(short_selling_path.is_file())
-
-    @classmethod
-    def tearDownClass(self):
-        eq_path = Path(self.bhavcopy._url_eq.path[1:])
-        fo_path = Path(self.bhavcopy._url_fo.path[1:])
-        short_selling_path = Path(self.bhavcopy._url_short_selling.path[1:])
-        #eq_path.unlink()
-        #fo_path.unlink()
-        #short_selling_path.unlink()
+        self.assertTrue(participant_oi_path.is_file())
+        self.assertTrue(participant_vol_path.is_file())

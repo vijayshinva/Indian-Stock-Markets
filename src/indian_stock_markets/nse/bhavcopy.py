@@ -27,6 +27,9 @@ class BhavCopy(object):
         self._url_participant_oi = urlparse(
             f'https://www.nseindia.com/content/nsccl/fao_participant_oi_{date.strftime("%d%m%Y")}.csv')
         self._file_participant_oi = Path(self._url_participant_oi.path[1:])
+        self._url_participant_vol = urlparse(
+            f'https://www.nseindia.com/content/nsccl/fao_participant_vol_{date.strftime("%d%m%Y")}.csv')
+        self._file_participant_vol = Path(self._url_participant_vol.path[1:])
         self.market_close = False
         self._initialize()
 
@@ -38,6 +41,7 @@ class BhavCopy(object):
         self._try_download(self._url_fo)
         self._try_download(self._url_short_selling)
         self._try_download(self._url_participant_oi)
+        self._try_download(self._url_participant_vol)
 
     def _try_download(self, url: urlparse):
         path = Path(url.path[1:])
@@ -84,6 +88,16 @@ class BhavCopy(object):
                 csv_reader = csv.reader(f, delimiter=',')
                 _ = next(csv_reader, None)
                 self.headers_participant_oi = next(csv_reader, None)
+                for row in csv.reader(f, delimiter=','):
+                    print(row)
+                    yield row
+
+    def read_participant_vol(self):
+        if self._file_participant_vol.is_file():
+            with self._file_participant_vol.open('rt') as f:
+                csv_reader = csv.reader(f, delimiter=',')
+                _ = next(csv_reader, None)
+                self.headers_participant_vol = next(csv_reader, None)
                 for row in csv.reader(f, delimiter=','):
                     print(row)
                     yield row
