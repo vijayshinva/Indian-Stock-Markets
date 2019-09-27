@@ -7,9 +7,10 @@ matrix:
       env: TOXENV=py36
     - python: 3.7
       env: TOXENV=py37
-  allow_failures:
     - python: 3.7
       env: TOXENV=flake8
+  allow_failures:
+    - env: TOXENV=flake8
 before_install: cd src
 install:
   - pip install pytest
@@ -20,7 +21,7 @@ install:
 script:
   - tox
   - python3 setup.py sdist bdist_wheel
-  - docker build -f ..\docker\Dockerfile
+  - docker build -f ..\docker\Dockerfile .
 after_success:
   - COVERALLS_REPO_TOKEN=$coveralls_token coveralls --verbose
 deploy:
