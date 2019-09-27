@@ -16,7 +16,7 @@ setuptools.setup(name="indian_stock_markets",
                  classifiers=["Programming Language :: Python :: 3",
                               "License :: OSI Approved :: Apache Software License",
                               "Operating System :: OS Independent", ],
-                 python_requires='>=3.6',
+                 python_requires='>=3',
                  install_requires=[
                      'requests',
                      'pandas'

@@ -1,15 +1,31 @@
 language: python
-python:
-  - 3.6
+matrix:
+  include:
+    - python: 3.3
+      env: TOXENV=py33
+    - python: 3.4
+      env: TOXENV=py34
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
+    - python: 3.7
+      env: TOXENV=py37
+    - python: 3.8
+      env: TOXENV=py38
+    - python: pypy3
+      env: TOXENV=pypy3
+    - python: pypy35
+      env: TOXENV=pypy35
 before_install: cd src
-install: 
+install:
   - pip install pytest
   - pip install pytest-cov
   - pip install coveralls
   - pip install tox
   - pip install -r requirements.txt
 script:
-  - tox 
+  - tox
   - python3 setup.py sdist bdist_wheel
 after_success:
   - COVERALLS_REPO_TOKEN=$coveralls_token coveralls
