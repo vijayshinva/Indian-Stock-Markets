@@ -24,4 +24,4 @@ class TestFutStk(unittest.TestCase):
 
     def test_load(self):
         with Nse() as nse:
-            nse.load(date(2019, 9, 2), date(2019, 9, 26))
+            nse.load(date(2019, 9, 2), date(2019, 9, 3))
