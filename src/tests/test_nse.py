@@ -3,6 +3,8 @@ from datetime import date
 import sqlite3
 import unittest
 import sys
+import os
+
 sys.path.append(".")
 
 
@@ -24,3 +26,11 @@ class TestFutStk(unittest.TestCase):
     def test_load(self):
         with Nse() as nse:
             nse.load(date(2019, 9, 2), date(2019, 9, 3))
+
+    def tearDown(self):
+        try:
+            os.remove('nse.db')
+            os.removedirs('content')
+            os.removedirs('archive')
+        except OSError as e:
+            print("Error: ", e.strerror)
