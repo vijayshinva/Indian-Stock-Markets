@@ -15,20 +15,20 @@ class BhavCopy(object):
     def __init__(self, date: date):
         self.date = date
         self._url_eq = urlparse(
-            f'https://www.nseindia.com/content/historical/EQUITIES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/cm{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
+            f'https://www1.nseindia.com/content/historical/EQUITIES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/cm{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
         self._file_eq = Path(self._url_eq.path[1:-4])
         self._url_fo = urlparse(
-            f'https://www.nseindia.com/content/historical/DERIVATIVES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/fo{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
+            f'https://www1.nseindia.com/content/historical/DERIVATIVES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/fo{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
         self._file_fo_zip = Path(self._url_fo.path[1:])
         self._file_fo = Path(self._url_fo.path[1:-4])
         self._url_short_selling = urlparse(
-            f'https://www.nseindia.com/archives/equities/shortSelling/shortselling_{date.strftime("%d%m%Y")}.csv')
+            f'https://www1.nseindia.com/archives/equities/shortSelling/shortselling_{date.strftime("%d%m%Y")}.csv')
         self._file_short_selling = Path(self._url_short_selling.path[1:])
         self._url_participant_oi = urlparse(
-            f'https://www.nseindia.com/content/nsccl/fao_participant_oi_{date.strftime("%d%m%Y")}.csv')
+            f'https://www1.nseindia.com/content/nsccl/fao_participant_oi_{date.strftime("%d%m%Y")}.csv')
         self._file_participant_oi = Path(self._url_participant_oi.path[1:])
         self._url_participant_vol = urlparse(
-            f'https://www.nseindia.com/content/nsccl/fao_participant_vol_{date.strftime("%d%m%Y")}.csv')
+            f'https://www1.nseindia.com/content/nsccl/fao_participant_vol_{date.strftime("%d%m%Y")}.csv')
         self._file_participant_vol = Path(self._url_participant_vol.path[1:])
         self.market_close = False
         self._initialize()
