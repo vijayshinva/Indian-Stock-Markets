@@ -13,15 +13,15 @@ class TestBhavCopy(unittest.TestCase):
 
     def test_download_urls(self):
         self.assertEqual(self.bhavcopy._url_eq.geturl(),
-                         'https://www.nseindia.com/content/historical/EQUITIES/2019/SEP/cm25SEP2019bhav.csv.zip')
+                         'https://www1.nseindia.com/content/historical/EQUITIES/2019/SEP/cm25SEP2019bhav.csv.zip')
         self.assertEqual(self.bhavcopy._url_fo.geturl(),
-                         'https://www.nseindia.com/content/historical/DERIVATIVES/2019/SEP/fo25SEP2019bhav.csv.zip')
+                         'https://www1.nseindia.com/content/historical/DERIVATIVES/2019/SEP/fo25SEP2019bhav.csv.zip')
         self.assertEqual(self.bhavcopy._url_short_selling.geturl(),
-                         'https://www.nseindia.com/archives/equities/shortSelling/shortselling_25092019.csv')
+                         'https://www1.nseindia.com/archives/equities/shortSelling/shortselling_25092019.csv')
         self.assertEqual(self.bhavcopy._url_participant_oi.geturl(),
-                         'https://www.nseindia.com/content/nsccl/fao_participant_oi_25092019.csv')
+                         'https://www1.nseindia.com/content/nsccl/fao_participant_oi_25092019.csv')
         self.assertEqual(self.bhavcopy._url_participant_vol.geturl(),
-                         'https://www.nseindia.com/content/nsccl/fao_participant_vol_25092019.csv')
+                         'https://www1.nseindia.com/content/nsccl/fao_participant_vol_25092019.csv')
 
     def test_downloaded_files(self):
         eq_path = Path(self.bhavcopy._url_eq.path[1:])
