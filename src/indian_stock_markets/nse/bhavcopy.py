@@ -36,7 +36,6 @@ class BhavCopy(object):
             return
         self._try_download(self._url_eq)
         self._try_download(self._url_fo)
-        self._try_download(self._url_short_selling)
         self._try_download(self._url_participant_oi)
         self._try_download(self._url_participant_vol)
 
