@@ -21,9 +21,6 @@ class BhavCopy(object):
             f'https://www1.nseindia.com/content/historical/DERIVATIVES/{date.strftime("%Y")}/{date.strftime("%b").upper()}/fo{date.strftime("%d%b%Y").upper()}bhav.csv.zip')
         self._file_fo_zip = Path(self._url_fo.path[1:])
         self._file_fo = Path(self._url_fo.path[1:-4])
-        self._url_short_selling = urlparse(
-            f'https://www1.nseindia.com/archives/equities/shortSelling/shortselling_{date.strftime("%d%m%Y")}.csv')
-        self._file_short_selling = Path(self._url_short_selling.path[1:])
         self._url_participant_oi = urlparse(
             f'https://www1.nseindia.com/content/nsccl/fao_participant_oi_{date.strftime("%d%m%Y")}.csv')
         self._file_participant_oi = Path(self._url_participant_oi.path[1:])
@@ -71,14 +68,6 @@ class BhavCopy(object):
             with self._file_eq.open('rt') as f:
                 csv_reader = csv.reader(f, delimiter=',')
                 self.headers_eq = next(csv_reader, None)
-                for row in csv.reader(f, delimiter=','):
-                    yield row
-
-    def read_short_selling(self):
-        if self._file_short_selling.is_file():
-            with self._file_short_selling.open('rt') as f:
-                csv_reader = csv.reader(f, delimiter=',')
-                self.headers_short_selling = next(csv_reader, None)
                 for row in csv.reader(f, delimiter=','):
                     yield row
 

@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(name="indian_stock_markets",
-                 version="0.0.5",
+                 version="0.0.6",
                  author="Vijayshinva B Karnure",
                  author_email="vijayshinva@outlook.com",
                  description="A Python package for analyzing Indian Stock Markets",

@@ -18,7 +18,6 @@ class TestFutStk(unittest.TestCase):
             self.assertTrue(any('FUTSTK' in t for t in tables))
             self.assertTrue(any('OPTIDX' in t for t in tables))
             self.assertTrue(any('OPTSTK' in t for t in tables))
-            self.assertTrue(any('SHORTSELLING' in t for t in tables))
             cursor.close()
             db.close()
 

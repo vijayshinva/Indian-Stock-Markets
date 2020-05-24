@@ -56,13 +56,7 @@ class Nse(object):
                         except sqlite3.IntegrityError as e:
                             cursor.execute('UPDATE OPTIDX SET OPEN=?,HIGH=?,LOW=?,CLOSE=?,SETTLE_PR=?,CONTRACTS=?,VAL_INLAKH=?,OPEN_INT=?,CHG_IN_OI=? WHERE SYMBOL=? AND EXPIRY_DT=?  AND TIMESTAMP=? AND STRIKE_PR=? AND OPTION_TYP=?', (
                                 open, high, low, close, settle_pr, contracts, val_inlakh, open_int, chg_in_oi, symbol, expiry_dt, timestamp, strike_pr, option_typ))
-                for _, security_symbol, trade_date, quantity in bhavcopy.read_short_selling():
-                    try:
-                        cursor.execute('INSERT INTO SHORTSELLING (SYMBOL,TRADE_DATE,QUANTITY) VALUES(?,?,?)', (
-                            security_symbol, trade_date, quantity))
-                    except sqlite3.IntegrityError as e:
-                        cursor.execute('UPDATE SHORTSELLING SET QUANTITY=? WHERE SYMBOL=? AND TRADE_DATE=?', (
-                            security_symbol, trade_date, quantity))
+                
                 for client_type, future_index_long, future_index_short, future_stock_long, future_stock_short, option_index_call_long, option_index_put_long, option_index_call_short, option_index_put_short, option_stock_call_long, option_stock_put_long, option_stock_call_short, optoin_stock_put_short, total_long_contracts, total_short_contracts in bhavcopy.read_participant_oi():
                     try:
                         if client_type == 'Client':
@@ -90,7 +84,7 @@ class Nse(object):
                         if client_type == 'Pro':
                             cursor.execute('UPDATE PRO SET OI_FUTURE_INDEX_LONG=?, OI_FUTURE_INDEX_SHORT=?, OI_FUTURE_STOCK_LONG=?, OI_FUTURE_STOCK_SHORT=?, OI_OPTION_INDEX_CALL_LONG=?, OI_OPTION_INDEX_PUT_LONG=?, OI_OPTION_INDEX_CALL_SHORT=?, OI_OPTION_INDEX_PUT_SHORT=?, OI_OPTION_STOCK_CALL_LONG=?, OI_OPTION_STOCK_PUT_LONG=?, OI_OPTION_STOCK_CALL_SHORT=?, OI_OPTION_STOCK_PUT_SHORT=?, OI_TOTAL_LONG_CONTRACTS=?, OI_TOTAL_SHORT_CONTRACTS=? WHERE TRADE_DATE=?', (
                                 future_index_long, future_index_short, future_stock_long, future_stock_short, option_index_call_long, option_index_put_long, option_index_call_short, option_index_put_short, option_stock_call_long, option_stock_put_long, option_stock_call_short, optoin_stock_put_short, total_long_contracts, total_short_contracts, bhavcopy.date.strftime('%Y-%m-%d')))
-                ###
+
                 for client_type, future_index_long, future_index_short, future_stock_long, future_stock_short, option_index_call_long, option_index_put_long, option_index_call_short, option_index_put_short, option_stock_call_long, option_stock_put_long, option_stock_call_short, optoin_stock_put_short, total_long_contracts, total_short_contracts in bhavcopy.read_participant_oi():
                     try:
                         if client_type == 'Client':
